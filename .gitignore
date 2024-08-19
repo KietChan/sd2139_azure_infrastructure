@@ -1,0 +1,21 @@
+# Terraform ignore rules
+**/.terraform/*
+*.tfstate
+*.tfstate.*.backup
+*.tfvars
+*.tfplan
+*.terraformrc
+terraform.rc
+*.tfstate.backup
+terraform.tfstate.backup
+.terraform.lock.hcl
+
+
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+
+# Visual Studio Code
+.vscode/
