@@ -10,6 +10,15 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Visual Studio Enterprise Subscription – MPN(1e12321e-10cc-4ba1-af96-643b3ca05ace)'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      # Login to ACR
+      az acr login --name sd2139frontend
+
 - task: KubernetesManifest@1
   inputs:
     action: 'deploy'
