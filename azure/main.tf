@@ -31,13 +31,18 @@ module "network" {
   address_prefixes    = var.address_prefixes
   address_space       = var.address_spaces
 }
+output "vnet_id" {
+  value = module.network.vnet_id
+}
+output "subnet_ids" {
+  value = module.network.subnet_ids
+}
 
-
-# module "aks" {
-#   source              = "./modules/aks"
-#   resource_group_name = "myResourceGroup"
-#   location            = "East US"
-#   aks_name            = "myAKSCluster"
-#   subnet_id           = module.network.subnet_ids["subnet1"]
-# }
-
+# Azure Kubernetes Service
+module "aks" {
+  source              = "./aks"
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  aks_name            = "myAKSCluster"
+  subnet_id           = module.network.subnet_ids["subnet1"]
+}

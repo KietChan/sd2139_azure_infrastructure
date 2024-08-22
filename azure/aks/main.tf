@@ -12,8 +12,15 @@ resource "azurerm_kubernetes_cluster" "aks" {
   default_node_pool {
     name       = "default"
     node_count = 1
-    vm_size    = "Standard_DS2_v2"
+    vm_size    = "standard_d2s_v3"
     vnet_subnet_id = var.subnet_id
+  }
+
+  network_profile {
+    network_plugin    = "azure"
+    network_policy    = "azure"
+    service_cidr      = "10.1.0.0/16"  # Ensure this does not overlap with your VNet or any other subnets
+    dns_service_ip    = "10.1.0.10"    # Ensure this is within the service_cidr range
   }
 
   identity {
