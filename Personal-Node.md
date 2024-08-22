@@ -12,3 +12,7 @@ export ARM_SUBSCRIPTION_ID=""
 export ARM_TENANT_ID=""
 ```
 
+Authenticate local kubectl with AKS
+```shell
+az aks get-credentials --resource-group sd2139-rg --name myAKSCluster
+```
